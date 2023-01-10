@@ -1,0 +1,10 @@
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-rA --cov aoc"
+testpaths = [
+    "tests/unit",
+    "tests/integration",
+]
+
+[tool.coverage.report]
+skip_empty = true

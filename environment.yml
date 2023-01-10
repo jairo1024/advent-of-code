@@ -1,0 +1,6 @@
+name: advent-of-code
+channels:
+  - conda-forge
+dependencies:
+  - codecov
+  - pip
