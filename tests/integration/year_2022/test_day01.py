@@ -9,6 +9,7 @@ def test_part1():
 
     assert calories == 72240
 
+
 def test_part2():
     calorie_inventory = utils.readlines_from_file("resources/year_2022/day01.txt")
 
