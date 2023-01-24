@@ -91,3 +91,37 @@ class TestPart1:
         score = day02.part1(rounds)
 
         assert score == expected_score
+
+
+class TestPart2:
+    def test_score_of_tie_round(self):
+        expected_score = 4
+        rounds = ["A Y"]
+
+        score = day02.part2(rounds)
+
+        assert score == expected_score
+
+    def test_score_of_player_losses_round(self):
+        expected_score = 1
+        rounds = ["B X"]
+
+        score = day02.part2(rounds)
+
+        assert score == expected_score
+
+    def test_score_of_player_wins_round(self):
+        expected_score = 7
+        rounds = ["C Z"]
+
+        score = day02.part2(rounds)
+
+        assert score == expected_score
+
+    def test_score_of_multiple_rounds(self):
+        expected_score = 12
+        rounds = ["A Y", "B X", "C Z"]
+
+        score = day02.part2(rounds)
+
+        assert score == expected_score
