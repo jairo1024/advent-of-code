@@ -1,6 +1,6 @@
 def part1(rounds):
     """
-    Big O: O(1) / Time complexity: O(n^2)
+    Big O: O(n) / Time complexity: O(n^2)
     :param rounds: A list of the rounds
     :return: Returns the total score of the player for all of the rounds
     """
@@ -13,7 +13,7 @@ def part1(rounds):
 
 def part2(rounds):
     """
-    Big O: O(1) / Time complexity: O(n^2)
+    Big O: O(n) / Time complexity: O(n^2)
     :param rounds: A list of the rounds
     :return: Returns the total score of the player for all of the rounds
 
@@ -66,6 +66,10 @@ def part2(rounds):
 
 def get_round_result(round):
     """
+    Big O: O(1) / Time complexity: O(n^2)
+    :param rounds: A of round of Rock, Paper, Scissors
+    :return: Returns the outcome score from the round
+
     A: Rock
     B: Paper
     C: Scissors
