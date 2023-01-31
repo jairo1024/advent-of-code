@@ -6,20 +6,20 @@ def part1(rucksacks):
     """
     total = 0
     for rucksack in rucksacks:
-        total += get_rucksack_priority_sum(rucksack)
+        left = rucksack[: len(rucksack) // 2]
+        right = rucksack[len(rucksack) // 2 :]
+        total += get_rucksack_priority_sum(left, right)
     return total
 
 
-def get_rucksack_priority_sum(rucksack):
+def get_rucksack_priority_sum(left, right):
     """
     Big O: O(n) / Time complexity: O(n)
     :param rucksack: A rucksack string that contains the items
     :return: Returns the total sum of the priority items in the rucksack
 
     """
-    left = rucksack[: len(rucksack) // 2]
     left = list(set(left))
-    right = rucksack[len(rucksack) // 2 :]
     right = list(set(right))
 
     sum = 0

@@ -4,57 +4,64 @@ from aoc.year_2022 import day03
 class TestGetRucksackPrioritySum:
     def test_no_duplicate_items(self):
         expected_sum = 0
-        rucksack = "jv"
+        left_rucksack = "j"
+        right_rucksack = "v"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_1_lowercase_item(self):
         expected_sum = 2
-        rucksack = "abbc"
+        left_rucksack = "ab"
+        right_rucksack = "bc"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_multiple_lowercase_items(self):
         expected_sum = 15
-        rucksack = "abcdeffedxyz"
+        left_rucksack = "abcdef"
+        right_rucksack = "fedxyz"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_1_uppercase_item(self):
         expected_sum = 27
-        rucksack = "AA"
+        left_rucksack = "A"
+        right_rucksack = "A"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_multiple_uppercase_items(self):
         expected_sum = 93
-        rucksack = "abcDEFFEDxyz"
+        left_rucksack = "abcDEF"
+        right_rucksack = "FEDxyz"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_mix_of_uppercase_and_lower_case_items(self):
         expected_sum = 32
-        rucksack = "aBcdzdBx"
+        left_rucksack = "aBcd"
+        right_rucksack = "zdBx"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
     def test_multiple_of_the_same_item_are_counted_only_once(self):
         expected_sum = 28
-        rucksack = "aBBBczBBBx"
+        left_rucksack = "aBBBc"
+        right_rucksack = "zBBBx"
 
-        sum = day03.get_rucksack_priority_sum(rucksack)
+        sum = day03.get_rucksack_priority_sum(left_rucksack, right_rucksack)
 
         assert sum == expected_sum
 
