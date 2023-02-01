@@ -97,3 +97,32 @@ class TestPart1:
         sum = day03.part1(rucksacks)
 
         assert sum == expected_sum
+
+
+class TestPart2:
+    def test_sum_of_one_set(self):
+        expected_sum = 18
+        rucksacks = [
+            "vJrwpWtwJgWrhcsFMMfFFhFp",
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+            "PmmdzqPrVvPwwTWBwg",
+        ]
+
+        sum = day03.part2(rucksacks)
+
+        assert sum == expected_sum
+
+    def test_sum_of_multiple_sets(self):
+        expected_sum = 70
+        rucksacks = [
+            "vJrwpWtwJgWrhcsFMMfFFhFp",
+            "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+            "PmmdzqPrVvPwwTWBwg",
+            "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+            "ttgJtRGJQctTZtZT",
+            "CrZsJsPPZsGzwwsLwLmpwMDw",
+        ]
+
+        sum = day03.part2(rucksacks)
+
+        assert sum == expected_sum
