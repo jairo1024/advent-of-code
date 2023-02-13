@@ -13,6 +13,21 @@ def part1(ids):
     return count
 
 
+def part2(ids):
+    """
+    Big O: O(n^2) / Time complexity: O(n^2)
+    :param id: A list of the section pair strings
+    :return: Returns the count of the assigned pairs that contain any of the other values in the other section
+    """
+    count = 0
+    for id in ids:
+        sections = get_sections(id)
+        if bool(sections[0] & sections[1]):
+            count = count + 1
+
+    return count
+
+
 def get_sections(id):
     """
     Big O: O(n) / Time complexity: O(n)
