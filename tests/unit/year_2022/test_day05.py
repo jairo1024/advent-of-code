@@ -68,13 +68,42 @@ class TestParseInstruction:
         assert instruction == expected_instruction
 
 
-class TestMoveStack:
+class TestMoveStack9000:
     def test_stack_is_moved(self):
         instruction = {"move": 1, "from": 2, "to": 1}
         stacks = {1: deque(["C", "B", "A"]), 2: deque(["Y", "X", "V"])}
         expected_stacks = {1: deque(["C", "B", "A", "V"]), 2: deque(["Y", "X"])}
 
-        updated_stacks = day05.move_stack(stacks, instruction)
+        updated_stacks = day05.move_stack_9000(stacks, instruction)
+
+        assert updated_stacks == expected_stacks
+
+    def test_multiple_crates_are_moved_from_stack(self):
+        instruction = {"move": 2, "from": 2, "to": 1}
+        stacks = {1: deque(["C", "B", "A"]), 2: deque(["Y", "X", "V"])}
+        expected_stacks = {1: deque(["C", "B", "A", "V", "X"]), 2: deque(["Y"])}
+
+        updated_stacks = day05.move_stack_9000(stacks, instruction)
+
+        assert updated_stacks == expected_stacks
+
+
+class TestMoveStack9001:
+    def test_stack_is_moved(self):
+        instruction = {"move": 1, "from": 2, "to": 1}
+        stacks = {1: deque(["C", "B", "A"]), 2: deque(["Y", "X", "V"])}
+        expected_stacks = {1: deque(["C", "B", "A", "V"]), 2: deque(["Y", "X"])}
+
+        updated_stacks = day05.move_stack_9001(stacks, instruction)
+
+        assert updated_stacks == expected_stacks
+
+    def test_multiple_crates_are_moved_from_stack(self):
+        instruction = {"move": 3, "from": 2, "to": 1}
+        stacks = {1: deque(["C", "B", "A"]), 2: deque(["Z", "Y", "X", "V"])}
+        expected_stacks = {1: deque(["C", "B", "A", "Y", "X", "V"]), 2: deque(["Z"])}
+
+        updated_stacks = day05.move_stack_9001(stacks, instruction)
 
         assert updated_stacks == expected_stacks
 
@@ -126,5 +155,56 @@ class TestPart1:
         expected_top_of_stacks = "CMZ"
 
         top_of_stacks = day05.part1(stack_strings)
+
+        assert top_of_stacks == expected_top_of_stacks
+
+
+class TestPart2:
+    def test_one_stack_is_moved(self):
+        stack_strings = [
+            "[A] [V]",
+            "[B] [X]",
+            "[C] [Y]",
+            " 1   2 ",
+            "",
+            "move 1 from 2 to 1",
+        ]
+        expected_top_of_stacks = "VX"
+
+        top_of_stacks = day05.part2(stack_strings)
+
+        assert top_of_stacks == expected_top_of_stacks
+
+    def test_multiple_stacks_are_moved(self):
+        stack_strings = [
+            "[A] [V] [M]",
+            "[B] [X] [N]",
+            "[C] [Y] [O]",
+            " 1   2   3 ",
+            "",
+            "move 1 from 2 to 1",
+            "move 2 from 1 to 3",
+        ]
+        expected_top_of_stacks = "BXV"
+
+        top_of_stacks = day05.part2(stack_strings)
+
+        assert top_of_stacks == expected_top_of_stacks
+
+    def test_provided_example(self):
+        stack_strings = [
+            "    [D]    ",
+            "[N] [C]    ",
+            "[Z] [M] [P]",
+            " 1   2   3 ",
+            "",
+            "move 1 from 2 to 1",
+            "move 3 from 1 to 3",
+            "move 2 from 2 to 1",
+            "move 1 from 1 to 2",
+        ]
+        expected_top_of_stacks = "MCD"
+
+        top_of_stacks = day05.part2(stack_strings)
 
         assert top_of_stacks == expected_top_of_stacks

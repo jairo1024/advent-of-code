@@ -5,7 +5,7 @@ def part1(stack_strings):
     """
     Big O: Time complexity: O(n^2) / Space complexity: O(n)
     :param stack_strings: A list of strings that contain the stacks and instructions
-    :return: Returns the combination of the top of each stack
+    :return: Returns the combination of the top of each stack using the CrateMover 9000
 
     Input:
         stack_strings: [
@@ -23,18 +23,61 @@ def part1(stack_strings):
     Return:
         "CMZ"
     """
+    stacks, instructions = get_stacks_and_instructions(stack_strings)
+
+    for instruction in instructions:
+        command = parse_instruction(instruction)
+        stacks = move_stack_9000(stacks, command)
+
+    return get_top_of_stacks(stacks)
+
+
+def part2(stack_strings):
+    """
+    Big O: Time complexity: O(n^2) / Space complexity: O(n)
+    :param stack_strings: A list of strings that contain the stacks and instructions
+    :return: Returns the combination of the top of each stack using the CrateMover 9001
+
+    Input:
+        stack_strings: [
+            "    [D]    ",
+            "[N] [C]    ",
+            "[Z] [M] [P]",
+            " 1   2   3 ",
+            "",
+            "move 1 from 2 to 1",
+            "move 3 from 1 to 3",
+            "move 2 from 2 to 1",
+            "move 1 from 1 to 2",
+        ]
+
+    Return:
+        "CMZ"
+    """
+
+    stacks, instructions = get_stacks_and_instructions(stack_strings)
+
+    for instruction in instructions:
+        command = parse_instruction(instruction)
+        stacks = move_stack_9001(stacks, command)
+
+    return get_top_of_stacks(stacks)
+
+
+def get_stacks_and_instructions(stack_strings):
     break_index = None
     for index, value in enumerate(stack_strings):
         if not value:
             break_index = index
             break
 
-    stacks = generate_stacks_from_list_of_strings(stack_strings[:break_index])
+    return (
+        generate_stacks_from_list_of_strings(stack_strings[:break_index]),
+        stack_strings[break_index + 1 :],
+    )
 
-    for instruction in stack_strings[break_index + 1 :]:
-        command = parse_instruction(instruction)
-        stacks = move_stack(stacks, command)
 
+def get_top_of_stacks(stacks):
     top_of_stacks = ""
     for index in range(len(stacks)):
         top_of_stacks = top_of_stacks + stacks[index + 1].pop()
@@ -117,11 +160,12 @@ def parse_instruction(instruction_string):
     return {item: int(next(items)) for item in items}
 
 
-def move_stack(stacks, instruction):
+def move_stack_9000(stacks, instruction):
     """
     Big O: Time complexity: O(n) / Space complexity: O(n)
-    :param instruction_string: A string that contains the instructions for the stacks
-    :return: Returns a dictionary with the parsed instructions
+    :param stacks: The dictionary of stacks
+    :param instruction: A dictionary of the parsed instructions
+    :return: Returns the updated stacks using the CrateMover 9000
 
     Input:
         stacks: { 1 : deque(["C", "B", "A"]), 2 : deque(["Y", "X", "V"]) }
@@ -138,5 +182,36 @@ def move_stack(stacks, instruction):
 
         value = stacks[from_stack_id].pop()
         stacks[to_stack_id].append(value)
+
+    return stacks
+
+
+def move_stack_9001(stacks, instruction):
+    """
+    Big O: Time complexity: O(n) / Space complexity: O(n)
+    :param stacks: The dictionary of stacks
+    :param instruction: A dictionary of the parsed instructions
+    :return: Returns the updated stacks using the CrateMover 9001
+
+    Input:
+        stacks: { 1 : deque(["C", "B", "A"]), 2 : deque(["Z", "Y", "X", "V"]) }
+
+        instruction: {"move": 3, "from": 2, "to": 1}
+
+    Return:
+        { 1 : deque(["C", "B", "A", "Y", "X", "V"]), 2 : deque(["Z"]) }
+
+    """
+    tmp_stack = deque()
+    for move in range(instruction["move"]):
+        from_stack_id = instruction["from"]
+        to_stack_id = instruction["to"]
+
+        value = stacks[from_stack_id].pop()
+        tmp_stack.append(value)
+
+    for index in range(len(tmp_stack)):
+        to_stack_id = instruction["to"]
+        stacks[to_stack_id].append(tmp_stack.pop())
 
     return stacks
