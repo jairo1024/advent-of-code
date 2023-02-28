@@ -70,3 +70,21 @@ class TestPart1:
         marker = day06.part1(datastream)
 
         assert marker == expected_marker
+
+
+class TestPart2:
+    @pytest.mark.parametrize(
+        "datastream, expected_marker",
+        [
+            ("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19),
+            ("bvwbjplbgvbhsrlpgdmjqwftvncz", 23),
+            ("nppdvjthqldpwncqszvftbrmjlhg", 23),
+            ("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29),
+            ("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26),
+        ],
+    )
+    def test_provided_example(self, datastream, expected_marker):
+
+        marker = day06.part2(datastream)
+
+        assert marker == expected_marker

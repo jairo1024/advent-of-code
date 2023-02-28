@@ -8,3 +8,11 @@ def test_part1():
     marker = day06.part1(datastream)
 
     assert marker == 1929
+
+
+def test_part2():
+    datastream = utils.read_from_file("resources/year_2022/day06.txt")
+
+    marker = day06.part2(datastream)
+
+    assert marker == 3298

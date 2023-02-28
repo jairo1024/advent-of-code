@@ -2,7 +2,7 @@ def part1(datastream):
     """
     Big O: Time complexity: O(n^2) / Space complexity: O(n)
     :param datastream: A string of datastreams
-    :return: Returns the index of the first start-of-packet marker
+    :return: Returns the index of the first start-of-packet marker using a sequence of 4
 
     Input:
         datastream: "bvwbjplbgvbhsrlpgdmjqwftvncz"
@@ -12,6 +12,22 @@ def part1(datastream):
     """
 
     return find_marker(datastream, 4)
+
+
+def part2(datastream):
+    """
+    Big O: Time complexity: O(n^2) / Space complexity: O(n)
+    :param datastream: A string of datastreams
+    :return: Returns the index of the first start-of-packet marker using a sequence of 14
+
+    Input:
+        datastream: "mjqjpqmgbljsphdztnvjfqwrcgsmlb"
+
+    Return:
+        19
+    """
+
+    return find_marker(datastream, 14)
 
 
 def find_marker(datastream, sequence_amount):
